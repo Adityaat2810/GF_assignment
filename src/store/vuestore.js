@@ -24,7 +24,7 @@ export default createStore({
   },
   actions: {
     async searchImages({ commit, state }) {
-      // Reset previous state
+      // reset previous state
       commit('SET_ERROR', null)
       commit('SET_LOADING', true)
       commit('SET_SEARCH_RESULTS', [])
