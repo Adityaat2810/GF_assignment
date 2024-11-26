@@ -1,8 +1,63 @@
 <template>
   <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 ">
     <div class="w-full max-w-3xl bg-white rounded-lg shadow-xl overflow-hidden">
-      <div class="p-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Search Tool</h1>
+      <div class="p-8 ">
+        <h1 class="text-3xl font-bold flex justify-center text-gray-800 mb-6">
+          Search Tool
+        </h1>
+        <SearchBar @search="handleSearch" />
+        <transition name="fade" mode="out-in">
+          <Loader v-if="isLoading" />
+          <SearchResultList
+            v-else-if="searchResults.length"
+            :results="searchResults"
+          />
+          <p 
+            v-else-if="searchQuery && !isLoading" 
+            class="text-gray-600 mt-4"
+          >
+            No results found for "{{ searchQuery }}"
+          </p>
+        </transition>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+import SearchBar from './components/SearchBar.vue'
+import SearchResultList from './components/SearchResultList.vue'
+import Loader from './components/Loader.vue'
+
+const store = useStore()
+
+const searchQuery = computed(() => store.getters.getSearchQuery)
+const searchResults = computed(() => store.getters.getSearchResults)
+const isLoading = computed(() => store.getters.isLoading)
+
+const handleSearch = (query) => {
+  store.dispatch('updateSearchQuery', query)
+}
+
+</script>
+
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>
+
+<!-- <template>
+  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4 ">
+    <div class="w-full max-w-3xl bg-white rounded-lg shadow-xl overflow-hidden">
+      <div class="p-8 ">
+        <h1 class="text-3xl font-bold flex justify-center text-gray-800  mb-6">Search Tool</h1>
         <SearchBar @search="handleSearch" />
         <transition name="fade" mode="out-in">
           <Loader v-if="isLoading" />
@@ -86,4 +141,4 @@ watch(searchQuery, (newQuery) => {
 .fade-leave-to {
   opacity: 0;
 }
-</style>
+</style> -->
