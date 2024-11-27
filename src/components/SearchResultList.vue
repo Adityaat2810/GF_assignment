@@ -30,4 +30,7 @@ defineProps({
   opacity: 0;
   transform: translateX(30px);
 }
+.list-move {
+  transition: transform 0.5s ease;
+}
 </style>
