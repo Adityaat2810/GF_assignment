@@ -11,9 +11,10 @@
         placeholder="Search anything..."
         class="
           w-full
-          pl-10
+          pl-12
           pr-16
-          py-5
+          py-4
+          
           text-xl
           text-gray-700
           bg-white
@@ -53,7 +54,6 @@
         <XIcon class="h-5 w-5" />
       </button>
       
-      <!-- Filter/Search Button -->
       <button
         @click="toggleFilter"
         class="
@@ -73,7 +73,6 @@
       </button>
     </div>
     
-    <!-- Optional Filter Dropdown (can be expanded) -->
     <transition
       enter-active-class="transition ease-out duration-300"
       enter-from-class="opacity-0 translate-y-[-10px]"
