@@ -3,6 +3,11 @@
 ## 📸 Project Overview
 
 A sophisticated, responsive, and interactive search application built with Vue.3, Vuex, and Tailwind CSS, leveraging the Unsplash API to provide a seamless image search experience.
+![Screenshot from 2024-11-28 12-28-29](https://github.com/user-attachments/assets/1a272acc-67c9-4b7a-b878-9255e37bb7ef)
+
+![Screenshot from 2024-11-28 12-29-17](https://github.com/user-attachments/assets/8a0096bb-fdc0-415f-b0b5-1281b14184c9)
+
+![Screenshot from2024-11-28 12-28-37](https://github.com/user-attachments/assets/c6e8b73c-b247-43df-8150-02bb871b8a96)
 
 
 ## ✨ Features
