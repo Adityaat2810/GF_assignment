@@ -1,142 +1,150 @@
-<template>
-  <div class="relative w-full max-w-md mx-auto">
-    <div class="relative">
 
-      <div class=" 
-       absolute inset-y-0 left-0 pl-3 flex 
-       items-center pointer-events-none"
-      >
+<template>
+  <div class="w-full max-w-xl mx-auto relative">
+    <div class="relative group">
+      <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
         <SearchIcon 
-          class="h-8 w-8 mr-5 text-gray-400 
-          dark:text-gray-500 transition-colors 
-          duration-200
-          " 
+          class="h-6 w-6 text-gray-500 dark:text-gray-400 
+          group-focus-within:text-green-600 
+          transition-colors duration-300" 
         />
       </div>
 
       <input
         :value="query"
         type="text"
-        placeholder="Search anything..."
+        placeholder="Search images..."
         class="
           w-full
           pl-12
-          pr-16
-          py-4
-          text-xl
-          text-gray-700
-          dark:text-gray-100
+          pr-20
+          py-3
+          rounded-2xl
+          text-lg
           bg-white
           dark:bg-gray-800
-          border
-          border-gray-300
+          text-gray-900
+          dark:text-gray-100
+          border-2
+          border-gray-200
           dark:border-gray-700
-          rounded-xl
-          shadow-sm
-          focus:outline-none
-          focus:ring-2
-          focus:ring-blue-500
-          dark:focus:ring-blue-400
-          focus:border-blue-500
-          dark:focus:border-blue-400
+          focus:border-green-600
+          dark:focus:border-green-700
+          focus:ring-4
+          focus:ring-green-500/20
+          dark:focus:ring-green-600/20
+          outline-none
           transition-all
           duration-300
           ease-in-out
-          placeholder-gray-400
-          dark:placeholder-gray-500
+          placeholder-gray-500
+          dark:placeholder-gray-600
         "
         @input="emitSearch"
       />
 
-      <button
-        v-if="query"
-        @click="clearSearch"
-        class="
-          absolute
-          right-12
-          inset-y-0
-          flex
-          items-center
-          pr-3
-          text-gray-400
-          dark:text-gray-500
-          hover:text-gray-600
-          dark:hover:text-gray-300
-          transition-colors
-          duration-200
-        "
-      >
-        <XIcon class="h-5 w-5" />
-      </button>
+      <div class="absolute right-0 inset-y-0 flex items-center pr-2 space-x-1">
+        <button
+          v-if="query"
+          @click="clearSearch"
+          class="
+            p-2
+            rounded-full
+            text-gray-500
+            dark:text-gray-400
+            hover:bg-gray-100
+            dark:hover:bg-gray-700
+            transition-colors
+            group
+          "
+        >
+          <XIcon class="h-5 w-5 group-hover:rotate-90 transition-transform" />
+        </button>
 
-      <button
-        @click="toggleFilter"
-        class="
-          absolute
-          right-0
-          inset-y-0
-          flex
-          items-center
-          pr-3
-          text-gray-400
-          dark:text-gray-500
-          hover:text-gray-600
-          dark:hover:text-gray-300
-          transition-colors
-          duration-200
-        "
-      >
-        <FilterIcon class="h-5 w-5" />
-      </button>
+        <button
+          @click="toggleFilter"
+          class="
+            p-2
+            rounded-full
+            text-gray-500
+            dark:text-gray-400
+            hover:bg-gray-100
+            dark:hover:bg-gray-700
+            transition-colors
+            group
+          "
+          :class="{ 'text-green-600': showFilter }"
+        >
+          <FilterIcon 
+            class="h-5 w-5 
+            group-hover:rotate-12 
+            transition-transform" 
+          />
+        </button>
+      </div>
     </div>
 
     <transition
       enter-active-class="transition ease-out duration-300"
-      enter-from-class="opacity-0 translate-y-[-10px]"
-      enter-to-class="opacity-100 translate-y-0"
+      enter-from-class="opacity-0 scale-95"
+      enter-to-class="opacity-100 scale-100"
       leave-active-class="transition ease-in duration-200"
-      leave-from-class="opacity-100 translate-y-0"
-      leave-to-class="opacity-0 translate-y-[-10px]"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-95"
     >
-      <div
-        v-if="showFilter"
+      <div 
+        v-if="showFilter" 
         class="
           absolute 
-          z-10 
+          z-20 
           mt-2 
           w-full 
           bg-white 
           dark:bg-gray-800
+          rounded-xl 
+          shadow-2xl
           border 
           border-gray-200 
           dark:border-gray-700
-          rounded-xl 
-          shadow-lg
           overflow-hidden
         "
       >
-        <div class="p-4">
+        <div class="p-4 space-y-3">
           <h3 class="text-sm font-semibold text-gray-600 dark:text-gray-300 mb-2">
             Filter Options
           </h3>
           <div class="space-y-2">
-            <label 
-              class="flex items-center text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-md transition-colors"
-            >
+            <label class="flex items-center group cursor-pointer">
               <input 
                 type="checkbox" 
-                class="mr-2 text-blue-500 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600"
+                class="
+                  mr-3 
+                  rounded 
+                  text-green-600 
+                  focus:ring-green-500 
+                  dark:bg-gray-700 
+                  dark:border-gray-600
+                "
               />
-              Recent Searches
+              <span class="text-gray-700 dark:text-gray-300 group-hover:text-green-600 transition-colors">
+                Recent Searches
+              </span>
             </label>
-            <label 
-              class="flex items-center text-gray-700 dark:text-gray-300 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 p-2 rounded-md transition-colors"
-            >
+            <label class="flex items-center group cursor-pointer">
               <input 
                 type="checkbox" 
-                class="mr-2 text-blue-500 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600"
+                class="
+                  mr-3 
+                  rounded 
+                  text-green-600 
+                  focus:ring-green-500 
+                  dark:bg-gray-700 
+                  dark:border-gray-600
+                "
               />
-              Popular Searches
+              <span class="text-gray-700 dark:text-gray-300 group-hover:text-green-600 transition-colors">
+                Popular Searches
+              </span>
             </label>
           </div>
         </div>

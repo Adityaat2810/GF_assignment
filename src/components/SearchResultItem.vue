@@ -3,44 +3,55 @@
     class="
       bg-white 
       dark:bg-gray-800 
-      rounded-xl 
-      shadow-md 
+      rounded-2xl 
+      shadow-lg 
       hover:shadow-xl 
       transition-all 
       duration-300 
       transform 
-      hover:-translate-y-1 
+      hover:-translate-y-2 
       cursor-pointer 
       overflow-hidden 
       group
-      border 
-      border-gray-200 
-      dark:border-gray-700
+      border-2
+      border-transparent
+      hover:border-green-100
+      dark:hover:border-green-900
     "
     @click="toggleExpanded"
   >
-    <div class="p-4 flex items-center">
-      <div class="relative">
+    <div class="p-5 flex items-center">
+      <div class="relative flex-shrink-0 mr-6">
         <img
           :src="result.urls.thumb"
           :alt="result.alt_description || 'Unsplash image'"
-          class="w-20 h-20 object-cover rounded-lg mr-5 transition-transform duration-300 group-hover:scale-110"
+          class="
+            w-24 
+            h-24 
+            object-cover 
+            rounded-xl 
+            transition-transform 
+            duration-300 
+            group-hover:scale-110
+            shadow-md
+          "
         />
         <div 
           class="
             absolute 
-            bottom-0 
-            right-0 
-            bg-blue-500 
+            -bottom-2 
+            -right-2 
+            bg-green-600 
             text-white 
             rounded-full 
-            w-5 
-            h-5 
+            w-6 
+            h-6 
             flex 
             items-center 
             justify-center 
             text-xs 
             font-bold
+            shadow-md
           "
         >
           {{ result.user.total_photos }}
@@ -50,15 +61,15 @@
       <div class="flex-1">
         <h3 
           class="
-            text-xl 
+            text-2xl 
             font-bold 
             text-gray-800 
             dark:text-gray-100 
-            mb-1 
+            mb-2 
             transition-colors 
             duration-300 
-            group-hover:text-blue-600
-            dark:group-hover:text-blue-400
+            group-hover:text-green-700
+            dark:group-hover:text-green-500
           "
         >
           {{ result.user.name }}
@@ -66,7 +77,7 @@
         <p 
           class="
             text-sm 
-            text-gray-500 
+            text-gray-600 
             dark:text-gray-400 
             line-clamp-2
           "
@@ -75,19 +86,20 @@
         </p>
       </div>
       
-      <div class="ml-auto">
+      <div className="ml-auto pl-4">
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           class="
-            h-6 
-            w-6 
+            h-7 
+            w-7 
             text-gray-400 
             dark:text-gray-500 
             transform 
-            transition-transform 
+            transition-all 
             duration-300
+            hover:text-green-600
           "
-          :class="{ 'rotate-180': expanded }"
+          :class="{ 'rotate-180 text-green-600': expanded }"
           fill="none" 
           viewBox="0 0 24 24" 
           stroke="currentColor"
@@ -101,7 +113,6 @@
         </svg>
       </div>
     </div>
-
     <transition 
       enter-active-class="transition-all duration-300 ease-out"
       leave-active-class="transition-all duration-300 ease-in"
@@ -113,8 +124,7 @@
       <div 
         v-if="expanded" 
         class="
-          px-4 
-          pb-4 
+          p-4
           bg-gray-50 
           dark:bg-gray-900 
           border-t 
